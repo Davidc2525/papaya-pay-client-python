@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "papaya-pay-client"
+version = "0.1.0"
+description = "SDK oficial de Papaya para validación de Webhooks y API"
+authors = [
+  { name="Papaya" }
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+]
