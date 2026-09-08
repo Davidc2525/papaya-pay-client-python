@@ -42,6 +42,7 @@ event = construct_event(raw_body, signature_header, "tu_webhook_secret")
 ## Correr el Ejemplo (FastAPI)
 
 ```bash
-cd libs/python
+git clone https://github.com/Davidc2525/papaya-pay-client-python.git
+cd papaya-pay-client-python
 uvicorn examples.fastapi_app:app --host 0.0.0.0 --port 8181 --reload
 ```
