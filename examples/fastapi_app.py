@@ -11,6 +11,8 @@ papaya = PapayaClient(
     base_url="http://localhost:80" # Ajustar para pruebas locales
 )
 
+AMOUNT_SCALE = 10000.0
+
 @app.post("/webhook")
 async def handle_webhook(request: Request):
     # Obtener el raw_body directamente antes de parsearlo a JSON (importante para validación)
@@ -37,8 +39,10 @@ async def handle_webhook(request: Request):
             checkout = papaya.checkouts.get(event.checkout_id)
             
             print(f"Pedido Interno (external_reference): {checkout.external_reference}")
-            print(f"Ítems pagados: {checkout.items}")
-            
+            print("Ítems pagados:")
+            for item in checkout.items:
+                print(f" - {item.quantity}x {item.name} (VES: {item.unit_price_ves_cents / AMOUNT_SCALE} | USDC: {item.unit_price_usdc_cents / AMOUNT_SCALE})")
+                
         return JSONResponse(content={"received": True})
         
     except PapayaWebhookError as e:
